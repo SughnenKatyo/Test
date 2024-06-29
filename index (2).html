@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>To-Do List</h1>
+    <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="Add new task...">
+        <button type="submit">Add</button>
+    </form>
+    <ul id="todoList">
+        <!-- To-do items will be added dynamically here -->
+    </ul>
+</div>
+
+<style>
+  
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+form button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    border-radius: 0 4px 4px 0;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+li:hover {
+    background-color: #e9ecef;
+}
+
+.delete {
+    cursor: pointer;
+    float: right;
+    color: #dc3545;
+}
+
+
+  
+</style>
+
+<script>
+  
+const todoForm = document.getElementById('todoForm');
+const todoInput = document.getElementById('todoInput');
+const todoList = document.getElementById('todoList');
+
+// Add task event
+todoForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    const todoText = todoInput.value.trim();
+
+    if (todoText !== '') {
+        addTodoItem(todoText);
+        todoInput.value = ''; // Clear input field
+    }
+});
+
+// Function to add a new to-do item
+function addTodoItem(todoText) {
+    const li = document.createElement('li');
+    li.textContent = todoText;
+
+    const deleteButton = document.createElement('span');
+    deleteButton.textContent = '❌';
+    deleteButton.classList.add('delete');
+    deleteButton.addEventListener('click', function() {
+        li.remove();
+    });
+
+    li.appendChild(deleteButton);
+    todoList.appendChild(li);
+}
+ 
+   
+  </script>
+  
+  
